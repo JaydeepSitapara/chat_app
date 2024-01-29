@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 late Size mq;
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       home: StreamBuilder(
-        stream: APIs.auth.authStateChanges(),
+        stream: APIs.instance.auth.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return const HomeScreen();

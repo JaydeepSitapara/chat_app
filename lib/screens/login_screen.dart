@@ -1,9 +1,9 @@
-import 'dart:io';
+import 'dart:io' show InternetAddress;
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_app/Screens/home_screen.dart';
-import '../api/api.dart';
-import 'package:first_app/helper/dialog.dart';
+import 'package:first_app/api/api.dart';
+import 'package:first_app/helper/dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:first_app/main.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.of(context).pop();
       if (user != null) {
         //if user exists move to home screen
-        if (await APIs.userExists()) {
+        if (await APIs.instance.userExists()) {
           // ignore: use_build_context_synchronously
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
           );
         } else {
           // craete user and move to home screen
-          await APIs.createUser().then(
+          await APIs.instance.createUser().then(
             (value) {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
@@ -46,6 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
               );
             },
           );
+
         }
       }
     });
@@ -68,13 +69,14 @@ class _LoginScreenState extends State<LoginScreen> {
       );
 
       // Once signed in, return the UserCredential
-      return await APIs.auth.signInWithCredential(credential);
-    } catch (e) {
-      print('_signInWithGoogle $e');
+      return await APIs.instance.auth.signInWithCredential(credential);
+    }  catch (e) {
+      print('_signInWithGoogle : $e');
       // ignore: use_build_context_synchronously
       Dialogs.showSnackbar(context, 'Something want wrong..');
-      return null;
     }
+
+    return null;
   }
 
   @override

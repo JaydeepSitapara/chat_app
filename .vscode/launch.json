@@ -2,10 +2,10 @@
     "configurations": [
         
         {
-            "name": "Flutter (lib\\Screens\\home_screen.dart)",
+            "name": "Flutter (lib\\main.dart)",
             "type": "dart",
             "request": "launch",
-            "program": "lib\\Screens\\home_screen.dart"
+            "program": "lib\\main.dart"
         }
     ]
 }
