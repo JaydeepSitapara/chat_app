@@ -27,9 +27,7 @@ class _ChatUserCardState extends State<ChatUserCard> {
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (_) => ChatScreen(
-                user: widget.user,
-              ),
+              builder: (_) =>  ChatScreen(user: widget.user),
             ),
           );
         },
@@ -37,7 +35,7 @@ class _ChatUserCardState extends State<ChatUserCard> {
           leading: ClipRRect(
             borderRadius: BorderRadius.circular(mq.height * .3),
             child: CachedNetworkImage(
-              imageUrl: widget.user.image,
+              imageUrl: widget.user.image ?? '',
               width: mq.height * .055,
               height: mq.height * .055,
               errorWidget: (context, url, error) => const CircleAvatar(
@@ -48,9 +46,9 @@ class _ChatUserCardState extends State<ChatUserCard> {
           // leading: const CircleAvatar(
           //   child: Icon(Icons.person_2),
           // ),
-          title: Text(widget.user.name),
+          title: Text(widget.user.name ?? ''),
           subtitle: Text(
-            widget.user.about,
+            widget.user.about ?? '',
             maxLines: 1,
           ),
           // trailing: const Text('02.00 PM'),

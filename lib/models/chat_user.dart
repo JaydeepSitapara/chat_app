@@ -1,24 +1,24 @@
 class ChatUser {
   ChatUser({
-    required this.image,
-    required this.about,
-    required this.name,
-    required this.createdAt,
-    required this.isOnline,
-    required this.lastActive,
-    required this.id,
-    required this.email,
-    required this.pushToken,
+    this.image,
+    this.about,
+    this.name,
+    this.createdAt,
+    this.isOnline,
+    this.lastActive,
+    this.id,
+    this.email,
+    this.pushToken,
   });
-  late String image;
-  late String about;
-  late String name;
-  late String createdAt;
-  late bool isOnline;
-  late String id;
-  late String lastActive;
-  late String email;
-  late String pushToken;
+  String? image;
+  String? about;
+  String? name;
+  String? createdAt;
+  bool? isOnline;
+  String? id;
+  String? lastActive;
+  String? email;
+  String? pushToken;
 
   ChatUser.fromJson(Map<String, dynamic> json) {
     image = json['image'] ?? '';

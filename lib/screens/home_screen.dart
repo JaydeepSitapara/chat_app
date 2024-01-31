@@ -4,16 +4,17 @@ import 'package:first_app/screens/profile_screen.dart';
 import 'package:first_app/widgets/chat_user_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-   List<ChatUser> _list = [];
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  List<ChatUser> _list = [];
   final List<ChatUser> _searchedList = [];
   var _isSearching = false;
   @override
@@ -50,10 +51,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       _searchedList.clear();
 
                       for (var i in _list) {
-                        if (i.name
+                        if ((i.name ?? '')
                                 .toLowerCase()
                                 .contains(value.toLowerCase()) ||
-                            i.email
+                            (i.email ?? '')
                                 .toLowerCase()
                                 .contains(value.toLowerCase())) {
                           _searchedList.add(i);

@@ -6,17 +6,18 @@ import 'package:first_app/api/api.dart';
 import 'package:first_app/helper/dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:first_app/main.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
   @override
-  State<LoginScreen> createState() {
+  ConsumerState<LoginScreen> createState() {
     return _LoginScreenState();
   }
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   void dispose() {
     super.dispose();
@@ -46,7 +47,6 @@ class _LoginScreenState extends State<LoginScreen> {
               );
             },
           );
-
         }
       }
     });
@@ -70,8 +70,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
       // Once signed in, return the UserCredential
       return await APIs.instance.auth.signInWithCredential(credential);
-    }  catch (e) {
-      print('_signInWithGoogle : $e');
+    } catch (e) {
+      // print('_signInWithGoogle : $e');
       // ignore: use_build_context_synchronously
       Dialogs.showSnackbar(context, 'Something want wrong..');
     }
